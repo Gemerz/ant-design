@@ -555,6 +555,12 @@ Upload 文件上传 - Ant Design
 <td>Function</td>
 <td><code>function() { return JSON.parse(ret).url }</code></td>
 </tr>
+<tr>
+<td>limit</td>
+<td>文件上传数量的限制</td>
+<td>Number</td>
+<td>Number.MAX_VALUE</td>
+</tr>
 </tbody>
 </table>
 <h3 id="onerror">onError</h3><p>错误回调，有三个参数返回：</p>
@@ -746,6 +752,64 @@ React.render(
       <a href="#demo-drag">拖拽上传</a>
     </div>
     <p>可以把文件拖入指定区域，完成上传，同样支持点击上传。</p>
+    <span class="collapse anticon anticon-circle-o-right" unselectable="none" style="-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;"></span>
+  </div>
+</div><div class="code-box" id="demo-limit">
+  <div class="code-box-demo">
+    <div id="components-upload-demo-limit"></div>
+    <script>(function(){'use strict';
+
+var Upload = antd.Upload;
+
+var props = {
+  description: '支持扩展名为: .rar .zip ...',
+  action: '/upload.do',
+  data: {},
+  accept: '',
+  uploadTip: '',
+  limit: 1,
+  onStart: function onStart(file) {
+    console.log(file.uid);
+  }
+};
+
+React.render(React.createElement(
+  Upload,
+  props,
+  React.createElement(
+    'button',
+    { className: 'ant-btn ant-btn-ghost' },
+    React.createElement('i', { className: 'anticon anticon-upload' }),
+    ' 点击上传，只支持一个文件'
+  )
+), document.getElementById('components-upload-demo-limit'));})()</script><div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> Upload = antd.Upload;
+
+<span class="keyword">var</span> props = {
+  description: <span class="string">'支持扩展名为: .rar .zip ...'</span>,
+  action: <span class="string">'/upload.do'</span>,
+  data: {},
+  accept: <span class="string">''</span>,
+  uploadTip: <span class="string">''</span>,
+  limit: <span class="number">1</span>,
+  onStart(file){
+    console.log(file.uid);
+  }
+};
+
+React.render(
+  <span class="xml"><span class="tag">&lt;<span class="title">Upload</span> {<span class="attribute">...props</span>}&gt;</span>
+    <span class="tag">&lt;<span class="title">button</span> <span class="attribute">className</span>=<span class="value">"ant-btn ant-btn-ghost"</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">i</span> <span class="attribute">className</span>=<span class="value">"anticon anticon-upload"</span>&gt;</span><span class="tag">&lt;/<span class="title">i</span>&gt;</span> 点击上传，只支持一个文件
+    <span class="tag">&lt;/<span class="title">button</span>&gt;</span>
+  <span class="tag">&lt;/<span class="title">Upload</span>&gt;</span>,
+  document.getElementById('components-upload-demo-limit')
+);</span></code></pre></div>
+  </div>
+  <div class="code-box-meta markdown">
+    <div class="code-box-title">
+      <a href="#demo-limit">文件列表限制</a>
+    </div>
+    <p><code>limit</code> 属性控制文件列表数的上限。如设为 1 时，表示只能上传一个文件，新文件会顶掉旧文件。</p>
     <span class="collapse anticon anticon-circle-o-right" unselectable="none" style="-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;"></span>
   </div>
 </div>
